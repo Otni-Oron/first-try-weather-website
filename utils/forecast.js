@@ -12,12 +12,12 @@ const forecast = (longitude, latitude, callback) => {
                 callback('unable to find location', undefined)
             }
             else {
-                // callback(undefined, 'Generally speaking, the weather is ' + response.body.current.weather_descriptions[0] + ', the temprature out is ' + response.body.current.temperature + ' deg, but it sure feels like ' + response.body.current.feelslike + ' deg')
-                callback(undefined, {
-                    forecast: response.body.current.weather_descriptions[0],
-                    temprature: response.body.current.temperature
-                }
-                )
+                 callback(undefined, 'Generally speaking, the weather is ' + response.body.current.weather_descriptions[0] + ', the temprature out is ' + response.body.current.temperature + ' deg, but it sure feels like ' + response.body.current.feelslike + ' deg. However - the wind-speed is '+response.body.current.wind_speed)
+                // callback(undefined, {
+                //     forecast: response.body.current.weather_descriptions[0],
+                //     temprature: response.body.current.temperature
+                // }
+                // )
             }
     })
 }
