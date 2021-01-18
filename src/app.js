@@ -55,20 +55,26 @@ app.get('/weather', (req, res) => {
     }
     geocode(req.query.address, (error, geocodeData) => {
         if (error) {
+            console.log('testGeoCodeError')
             return res.send({ error })
         }
 
-        forecast(geocodeData.longitude, geocodeData.latitude, (error, forecastData={}) => {
+        forecast(geocodeData.longitude, geocodeData.latitude, (error, forecastData) => {
             if (error) {
+                console.log('testForecastError')
                 return res.send({ error })
             }
-
-            res.send({
-                forecast: forecastData.forecast,
-                temprature: forecastData.temprature,
-                location: geocodeData.location,
+            res.send(
+               {
+                   justText: 'just-Text-Test',
+                forecast: forecastData,
                 address: req.query.address
-            })
+               }
+                // forecastData.forecast,
+                // forecastData.temprature,
+                // forecastData.windSpeed
+            
+            )
         })
     })
 })
@@ -99,7 +105,7 @@ app.get('*', (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log('Server is up on port: '+port)
+    console.log('Server is up on port: ' + port)
 })
 
 

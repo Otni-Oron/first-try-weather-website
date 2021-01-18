@@ -5,20 +5,20 @@ const forecast = (longitude, latitude, callback) => {
 
     request({ url, json: true }, (error, response) => {
         if (error) {
-            callback('unable to connect to weather service', undefined)
+           return callback('unable to connect to weather service', undefined)
         }
         else
             if (response.body.error) {
-                callback('unable to find location', undefined)
+              return  callback('unable to find location', undefined)
             }
             else {
-                 callback(undefined, 'Generally speaking, the weather is ' + response.body.current.weather_descriptions[0] + ', the temprature out is ' + response.body.current.temperature + ' deg, but it sure feels like ' + response.body.current.feelslike + ' deg. However - the wind-speed is '+response.body.current.wind_speed)
-                // callback(undefined, {
-                //     forecast: response.body.current.weather_descriptions[0],
-                //     temprature: response.body.current.temperature
-                // }
-                // )
-            }
+                 // callback(undefined, 'Generally speaking, the weather is ' + response.body.current.weather_descriptions[0] + ', the temprature out is ' + response.body.current.temperature + ' deg, but it sure feels like ' + response.body.current.feelslike + ' deg. However - the wind-speed is '+response.body.current.wind_speed)
+                callback(undefined, 'the forcast is: '+response.body.current.weather_descriptions[0]+' and temprature is: '+
+                response.body.current.temperature+'. Wind-Speed is: '+response.body.current.wind_speed)
+                //  callback(undefined,  {data:'Generally speaking, the weather is ' + response.body.current.weather_descriptions[0] + ', the temprature out is ' 
+                //  + response.body.current.temperature + ' deg, but it sure feels like ' + response.body.current.feelslike + ' deg'})
+        //    callback(undefined, 'test')
+                }
     })
 }
 
